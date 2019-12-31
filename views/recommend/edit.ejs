@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--The content below is only a placeholder and can be replaced.-->
+
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/css/basic.css">
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <a href="/type/home"><img src="/images/node.jpg" height="44px;" />
+            </a> 
+
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">             
+
+                <li class="active"><a href="#">商品管理</a>
+                </li>  
+				 <li class="active"><a href="#">系统设置</a>
+                </li>  
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>欢迎您：<%= userinfo.username%></a>
+                    <li><a href="/loginOut">安全退出</a>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <a href="#" class="list-group-item active">分类管理</a>
+            <a href="/type/index" class="list-group-item">
+                商品分类列表</a>
+            <a href="/type/add" class="list-group-item">
+                增加商品分类</a>
+
+            <a href="#" class="list-group-item active">商品管理</a>
+            <a href="/product/index" class="list-group-item">
+                商品列表</a>
+            <a href="/product/add" class="list-group-item">
+                增加商品</a>
+                
+            <a href="#" class="list-group-item active">轮播图管理</a>
+            <a href="/carousel/index" class="list-group-item">
+                轮播图列表</a>
+            <a href="/carousel/add" class="list-group-item">
+                增加轮播图</a>
+                
+            <a href="#" class="list-group-item active">猜你喜欢</a>
+            <a href="/guess/index" class="list-group-item">
+                猜你喜欢列表</a>
+            <a href="/guess/add" class="list-group-item">
+                增加猜你喜欢</a>
+                
+            <a href="#" class="list-group-item active">推荐</a>
+            <a href="/recommend/index" class="list-group-item">
+                推荐商品</a>
+            <a href="/recommend/add" class="list-group-item">
+                增加推荐商品</a>
+        </div>
+        <div class="col-sm-10">
+            <ol class="breadcrumb">
+                <li class="active">编辑类别
+                </li>
+                <li class="active">编辑类别
+                </li>
+            </ol>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    编辑商品
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive input-form">
+                        <form action="/recommend/edit" method="post" enctype="multipart/form-data">
+                            <ul>
+                                <li>  商品名称: <input type="text" value="<%= recommend.title %>" name="title"/></li>
+                                    
+                                <li>  商品图片: <input type="file" name="picname"/></li>
+                                <input type="hidden" name="oldpicname" value="<%= recommend.picname %>">
+                                <input type="hidden" name="_id" value="<%= recommend._id %>">
+                                <li>  商品价格: <input type="text" name="price" value="<%= recommend.price %>"/></li>
+                                <li>  商品描述:
+                                    <textarea name="detail" cols="30" rows="10"><%= recommend.detail %></textarea>
+                                </li>
+                                <li>
+                                    商品类别：
+                                    <select name="typeid">
+                                        <%for(let i=0;i<types.length;i++){%>
+                                        <option
+                                                value="<%= types[i]._id %>"
+                                                <%= recommend.typeid.toString() == types[i]._id.toString() ? 'selected' : '' %>
+                                        ><%= types[i].typename %></option>
+                                        <%}%>
+                                    </select>
+                                </li>
+                                <li>
+                                    <br/>
+                                    <button type="submit" class="btn btn-default">修改商品</button>
+                                </li>
+
+                            </ul>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
